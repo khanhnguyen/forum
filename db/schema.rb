@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20120228185228) do
 
   create_table "forem_categories", :force => true do |t|
     t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "forem_forums", :force => true do |t|
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20120228185228) do
     t.integer  "topic_id"
     t.text     "text"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "reply_to_id"
     t.string   "state",       :default => "pending_review"
   end
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20120228185228) do
     t.integer  "forum_id"
     t.integer  "user_id"
     t.string   "subject"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.boolean  "locked",       :default => false,            :null => false
     t.boolean  "pinned",       :default => false
     t.boolean  "hidden",       :default => false
@@ -95,20 +95,20 @@ ActiveRecord::Schema.define(:version => 20120228185228) do
   add_index "forem_views", ["user_id"], :name => "index_forem_views_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "",               :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "",               :null => false
+    t.string   "email",                                 :default => "",               :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",               :null => false
     t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
-    t.boolean  "forem_admin",                         :default => false
-    t.boolean  "boolean",                             :default => false
-    t.string   "forem_state",                         :default => "pending_review"
+    t.boolean  "forem_admin",                           :default => false
+    t.string   "forem_state",                           :default => "pending_review"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
